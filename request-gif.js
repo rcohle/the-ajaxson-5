@@ -54,7 +54,7 @@ function fetchAndDisplayGif(event) {
     });
     
     setGifLoadedStatus(false);
-    $("#feedback").text("Loading, please wait...");
+    $("#feedback").text("Please don't go, girl");
     // TODO
     // give the user a "Loading..." message while they wait
     
