@@ -4,6 +4,8 @@ $(document).ready(function() {
 });
 
 
+
+
 /**
  * sends an asynchronous request to Giphy.com aksing for a random GIF using the 
  * user's search term (along with "jackson 5")
@@ -15,6 +17,8 @@ function fetchAndDisplayGif(event) {
     // This prevents the form submission from doing what it normally does: send a request (which would cause our page to refresh).
     // Because we will be making our own AJAX request, we dont need to send a normal request and we definitely don't want the page to refresh.
     event.preventDefault();
+
+    if ($("#test").val() == 5 || $("#test").val().toLowerCase() == "five") {
     
     // get the user's input text from the DOM
     var searchQuery = $("input[name=tag]").val();
@@ -40,26 +44,30 @@ function fetchAndDisplayGif(event) {
 
             $("#gif").attr("src", response.data.image_url);
             setGifLoadedStatus(true);
+
+        },
             // TODO
             // 1. set the source attribute of our image to the image_url of the GIF
             // 2. hide the feedback message and display the image
-        },
-        error: function() {
-            // if something went wrong, the code in here will execute instead of the success function
-            
-            // give the user an error message
-            $("#feedback").text("Sorry, could not load GIF. Try again!");
-            setGifLoadedStatus(false);           
+        
+
+        error: function () {
+
+            $("#feedback").text("Blame it On the Boogie... we could not complete your request... please try again.");
+            setGifLoadedStatus(false);   
         }
     });
-    
-    setGifLoadedStatus(false);
-    $("#feedback").text("Please don't go, girl");
-    // TODO
-    // give the user a "Loading..." message while they wait
-    
-}
+        
+        $("#feedback").text("Please don't go, girl... coming up!");
 
+}
+ else {
+   
+    $("#feedback").text("You and I must make a pact - to answer questions correctly. Sorry, try again.");
+    setGifLoadedStatus(false);
+}        
+}
+    
 /**
  * toggles the visibility of UI elements based on whether a GIF is currently loaded.
  * if the GIF is loaded: displays the image and hides the feedback label
